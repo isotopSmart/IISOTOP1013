@@ -23,7 +23,12 @@ import { ethers } from "ethers";
 
 要使用IISOTOP1013合约，首先需要获得工厂合约对象
  ```javascript
-     const Factory = await ethers.getContractAt('IIsotopFactory',FactoryContractAddr);
+     const FactoryContractAddr = '0x21264AbA1FdDECA4d89a992729b25Bd9060A4beE';
+     const provider = new ethers.providers.Web3Provider(window.ethereum);
+     const signer = provider.getSigner();
+     const Factory = new ethers.Contract(factorycontractaddr, factoryABI, signer);
+     let waiter = await Factory.deployContract('ISOTOP1013');
+     water.wait();
  ```
  其中`FactoryContractAddr`是工厂合约地址，`Factory`是生成的工厂合约对象
  
@@ -37,7 +42,7 @@ import { ethers } from "ethers";
   ```
 之后根据`IISOTOP1013Addr`获得对象`IISOTOP`，就可以调用它的各种方法了
 ```js
-    const  IISOTOP = await  ethers.getContractAt("IISOTOP1013",IISOTOP1013Addr);
+    const IISOTOP = new ethers.Contract(IISOTOP1013Addr, IISOTOP1013ABI, signer);
 ```
 ## 4.  铸造NFT
 
